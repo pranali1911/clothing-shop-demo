@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NOIRÉ FASHION | Premium Clothing Store</title>
+
+    <meta
+        name="description"
+        content="NOIRÉ Fashion - Premium clothing for men, women and kids."
+    >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- THREE.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+
+        /* =========================================
+           GLOBAL
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #080808;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        section {
+            padding: 100px 7%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            z-index: 100;
+
+            background: rgba(8, 8, 8, 0.65);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            letter-spacing: 5px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ddd;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c8a46b;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+        }
+
+        #three-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,0.9),
+                    rgba(0,0,0,0.45),
+                    rgba(0,0,0,0.1)
+                );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+
+            max-width: 650px;
+            margin-left: 7%;
+        }
+
+        .small-title {
+            color: #c8a46b;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(60px, 8vw, 120px);
+            line-height: 0.95;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            color: #c7c7c7;
+            line-height: 1.8;
+            max-width: 520px;
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 25px;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            border: 1px solid white;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: black;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-hint {
+            position: absolute;
+            bottom: 30px;
+            right: 7%;
+            z-index: 4;
+
+            color: #aaa;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* =========================================
+           SECTION HEADER
+        ========================================= */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            color: #c8a46b;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 11px;
+        }
+
+        .section-title h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(40px, 5vw, 65px);
+            margin-top: 15px;
+        }
+
+        .section-title p {
+            color: #999;
+            max-width: 600px;
+            margin: 20px auto 0;
+            line-height: 1.8;
+        }
+
+        /* =========================================
+           ABOUT
+        ========================================= */
+
+        .about {
+            background: #101010;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            min-height: 550px;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.2),
+                    rgba(0,0,0,0.7)
+                ),
+                url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about-text span {
+            color: #c8a46b;
+            letter-spacing: 4px;
+            font-size: 11px;
+        }
+
+        .about-text h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 55px;
+            line-height: 1.05;
+            margin: 20px 0;
+        }
+
+        .about-text p {
+            color: #aaa;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        /* =========================================
+           CLOTHING CATEGORIES
+        ========================================= */
+
+        .categories {
+            background: #080808;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category img {
+            height: 100%;
+            object-fit: cover;
+            transition: 0.7s;
+        }
+
+        .category:hover img {
+            transform: scale(1.08);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 25px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,0.85)
+                );
+        }
+
+        .category h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+        }
+
+        /* =========================================
+           WHY US
+        ========================================= */
+
+        .why-us {
+            background: #111;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .why-card {
+            padding: 40px 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+        }
+
+        .why-icon {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .why-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .why-card p {
+            color: #888;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           GALLERY
+        ========================================= */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* =========================================
+           CONTACT
+        ========================================= */
+
+        .contact {
+            background: #101010;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+        }
+
+        .contact-info h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 55px;
+            margin-bottom: 25px;
+        }
+
+        .contact-info p {
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .contact-detail {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-detail-icon {
+            font-size: 22px;
+        }
+
+        .contact-detail h4 {
+            margin-bottom: 5px;
+        }
+
+        .contact-detail p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           QUERY FORM
+        ========================================= */
+
+        .query-box {
+            background: #080808;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .query-box h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+
+            background: #151515;
+            border: 1px solid #292929;
+
+            color: white;
+            outline: none;
+
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            border: none;
+            background: #25D366;
+            color: white;
+            padding: 17px;
+
+            font-weight: 700;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1ebe5b;
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+            padding: 40px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media(max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                min-height: 400px;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .hero-content {
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+
+            .hero h1 {
+                font-size: 60px;
+            }
+
+            .category-grid,
+            .why-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 400px;
+            }
+
+            .contact-info h2,
+            .about-text h2 {
+                font-size: 42px;
+            }
+
+            .query-box {
+                padding: 25px;
+            }
+
+            footer {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<header class="navbar">
+
+    <a href="#" class="logo">
+        NOIRÉ
+    </a>
+
+    <nav>
+        <ul class="nav-links">
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
+            <li>
+                <a href="#collections">Collections</a>
+            </li>
+
+            <li>
+                <a href="#gallery">Gallery</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <div class="menu-btn">
+        ☰
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero" id="home">
+
+    <div id="three-container"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            Premium Fashion Store
+        </div>
+
+        <h1>
+            Style<br>
+            That Defines You.
+        </h1>
+
+        <p>
+            Discover the latest fashion collections for men,
+            women and kids. Quality clothing, modern styles
+            and a shopping experience you can trust.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#collections" class="btn btn-primary">
+                Explore Collection
+            </a>
+
+            <a href="#contact" class="btn">
+                Contact Us
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-hint">
+        DRAG TO ROTATE THE 3D EXPERIENCE
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     ABOUT
+========================================= -->
+
+<section class="about" id="about">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div class="about-image"></div>
+
+            <div class="about-text">
+
+                <span>
+                    ABOUT OUR SHOP
+                </span>
+
+                <h2>
+                    Fashion made for every occasion.
+                </h2>
+
+                <p>
+                    Welcome to NOIRÉ Fashion. We are a
+                    local fashion destination offering
+                    carefully selected clothing for
+                    modern lifestyles.
+                </p>
+
+                <p>
+                    From everyday essentials to special
+                    occasion outfits, our collection is
+                    selected with comfort, quality and
+                    style in mind.
+                </p>
+
+                <p>
+                    Visit our store and explore our latest
+                    collection with our team.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     COLLECTIONS
+========================================= -->
+
+<section class="categories" id="collections">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>
+                OUR COLLECTION
+            </span>
+
+            <h2>
+                What We Sell
+            </h2>
+
+            <p>
+                Explore our range of clothing and fashion
+                collections available at our store.
+            </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+
+            <div class="category">
+
+                <img
+                    src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&w=800&q=80"
+                    alt="Men's Fashion"
+                >
+
+                <div class="category-overlay">
+                    <h3>
+                        Men's Wear
+                    </h3>
+                </div>
+
+            </div>
+
+
+            <div class="category">
+
+                <img
+                    src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80"
+                    alt="Women's Fashion"
+                >
+
+                <div class="category-overlay">
+                    <h3>
+                        Women's Wear
+                    </h3>
+                </div>
+
+            </div>
+
+
+            <div class="category">
+
+                <img
+                    src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=80"
+                    alt="Kids Fashion"
+                >
+
+                <div class="category-overlay">
+                    <h3>
+                        Kids Wear
+                    </h3>
+                </div>
+
+            </div>
+
+
+            <div class="category">
+
+                <img
+                    src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=800&q=80"
+                    alt="Fashion Collection"
+                >
+
+                <div class="category-overlay">
+                    <h3>
+                        New Arrivals
+                    </h3>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     WHY CHOOSE US
+========================================= -->
+
+<section class="why-us">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>
+                OUR PROMISE
+            </span>
+
+            <h2>
+                Why Choose Us
+            </h2>
+
+        </div>
+
+
+        <div class="why-grid">
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Quality
+                </h3>
+
+                <p>
+                    Carefully selected clothing with
+                    quality and comfort in mind.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ◈
+                </div>
+
+                <h3>
+                    Latest Styles
+                </h3>
+
+                <p>
+                    Discover new designs and fashion
+                    trends regularly.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ♢
+                </div>
+
+                <h3>
+                    Variety
+                </h3>
+
+                <p>
+                    Different styles, sizes and
+                    collections for the whole family.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    Personal Service
+                </h3>
+
+                <p>
+                    Our team is always available to
+                    help you find the right outfit.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     GALLERY
+========================================= -->
+
+<section id="gallery">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>
+                STORE & FASHION
+            </span>
+
+            <h2>
+                Our Gallery
+            </h2>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+
+            <div class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80"
+                    alt="Clothing store"
+                >
+
+            </div>
+
+
+            <div class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=80"
+                    alt="Clothing"
+                >
+
+            </div>
+
+
+            <div class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=80"
+                    alt="Fashion"
+                >
+
+            </div>
+
+
+            <div class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=80"
+                    alt="Fashion store"
+                >
+
+            </div>
+
+
+            <div class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=80"
+                    alt="Women's fashion"
+                >
+
+            </div>
+
+
+            <div class="gallery-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1000&q=80"
+                    alt="Clothing collection"
+                >
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CONTACT
+========================================= -->
+
+<section class="contact" id="contact">
+
+    <div class="container">
+
+        <div class="contact-grid">
+
+
+            <!-- CONTACT INFORMATION -->
+
+            <div class="contact-info">
+
+                <div class="small-title">
+                    VISIT OUR STORE
+                </div>
+
+                <h2>
+                    We'd love to hear from you.
+                </h2>
+
+                <p>
+                    Have a question about our collection,
+                    sizes, availability or anything else?
+                    Send us a message on WhatsApp.
+                </p>
+
+
+                <div class="contact-detail">
+
+                    <div class="contact-detail-icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Address
+                        </h4>
+
+                        <p>
+                            Main Market, Your City,
+                            Maharashtra, India
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-detail">
+
+                    <div class="contact-detail-icon">
+                        📞
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Phone
+                        </h4>
+
+                        <p>
+                            +91 98765 43210
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-detail">
+
+                    <div class="contact-detail-icon">
+                        🕐
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Opening Hours
+                        </h4>
+
+                        <p>
+                            Monday - Sunday<br>
+                            10:00 AM - 9:00 PM
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="https://maps.google.com"
+                    target="_blank"
+                    class="btn"
+                >
+                    Open Google Maps
+                </a>
+
+            </div>
+
+
+            <!-- QUERY FORM -->
+
+            <div class="query-box">
+
+                <h3>
+                    Send Us a Query
+                </h3>
+
+
+                <form id="whatsappForm">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="customerPhone"
+                            placeholder="Enter your mobile number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            What are you looking for?
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerRequirement"
+                            placeholder="Example: Men's shirt, size L"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Your Query
+                        </label>
+
+                        <textarea
+                            id="customerMessage"
+                            placeholder="Write your question..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="whatsapp-btn"
+                    >
+                        💬 SEND QUERY ON WHATSAPP
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div>
+        © 2026 NOIRÉ FASHION. All Rights Reserved.
+    </div>
+
+    <div>
+        Premium Fashion Store
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+
+/* =========================================
+   WHATSAPP QUERY
+========================================= */
+
+/*
+   IMPORTANT:
+   Replace this number with your actual
+   WhatsApp number.
+
+   IMPORTANT:
+   Use country code.
+
+   India example:
+
+   919876543210
+
+   Do NOT use:
+   +91 98765 43210
+
+*/
+
+const WHATSAPP_NUMBER = "919876543210";
+
+
+document
+.getElementById("whatsappForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("customerName").value.trim();
+
+
+    const phone =
+        document.getElementById("customerPhone").value.trim();
+
+
+    const requirement =
+        document
+        .getElementById("customerRequirement")
+        .value.trim();
+
+
+    const message =
+        document
+        .getElementById("customerMessage")
+        .value.trim();
+
+
+    const whatsappMessage =
+
+`Hello NOIRÉ Fashion,
+
+My name is ${name}.
+
+My mobile number is:
+${phone}
+
+I am looking for:
+${requirement}
+
+My query:
+${message}
+
+Thank you.`;
+
+
+    const whatsappURL =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(whatsappMessage);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+});
+
+
+/* =========================================
+   THREE.JS 3D HERO
+========================================= */
+
+const container =
+    document.getElementById(
+        "three-container"
+    );
+
+
+const scene =
+    new THREE.Scene();
+
+
+const camera =
+    new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth /
+        window.innerHeight,
+        0.1,
+        100
+    );
+
+
+camera.position.z = 6;
+
+
+const renderer =
+    new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true
+    });
+
+
+renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio, 2)
+);
+
+
+renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+);
+
+
+container.appendChild(
+    renderer.domElement
+);
+
+
+/* =========================================
+   3D GROUP
+========================================= */
+
+const fashionGroup =
+    new THREE.Group();
+
+
+scene.add(
+    fashionGroup
+);
+
+
+/* =========================================
+   MAIN 3D OBJECT
+========================================= */
+
+const geometry =
+    new THREE.IcosahedronGeometry(
+        1.5,
+        2
+    );
+
+
+const material =
+    new THREE.MeshStandardMaterial({
+
+        color: 0xb89566,
+
+        metalness: 0.6,
+
+        roughness: 0.25
+
+    });
+
+
+const fashionObject =
+    new THREE.Mesh(
+        geometry,
+        material
+    );
+
+
+fashionGroup.add(
+    fashionObject
+);
+
+
+/* =========================================
+   RING
+========================================= */
+
+const ringGeometry =
+    new THREE.TorusGeometry(
+        2.1,
+        0.025,
+        16,
+        100
+    );
+
+
+const ringMaterial =
+    new THREE.MeshBasicMaterial({
+
+        color: 0xd6b47c,
+
+        transparent: true,
+
+        opacity: 0.7
+
+    });
+
+
+const ring =
+    new THREE.Mesh(
+        ringGeometry,
+        ringMaterial
+    );
+
+
+ring.rotation.x = 1.2;
+
+fashionGroup.add(
+    ring
+);
+
+
+/* =========================================
+   SECOND RING
+========================================= */
+
+const ring2 =
+    new THREE.Mesh(
+        new THREE.TorusGeometry(
+            2.5,
+            0.015,
+            16,
+            100
+        ),
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.2
+        })
+    );
+
+
+ring2.rotation.y = 0.7;
+
+fashionGroup.add(
+    ring2
+);
+
+
+/* =========================================
+   LIGHTING
+========================================= */
+
+const ambientLight =
+    new THREE.AmbientLight(
+        0xffffff,
+        0.8
+    );
+
+
+scene.add(
+    ambientLight
+);
+
+
+const pointLight =
+    new THREE.PointLight(
+        0xffd8aa,
+        30,
+        20
+    );
+
+
+pointLight.position.set(
+    3,
+    3,
+    5
+);
+
+
+scene.add(
+    pointLight
+);
+
+
+const secondLight =
+    new THREE.PointLight(
+        0xffffff,
+        10,
+        15
+    );
+
+
+secondLight.position.set(
+    -3,
+    -2,
+    4
+);
+
+
+scene.add(
+    secondLight
+);
+
+
+/* =========================================
+   MOUSE ROTATION
+========================================= */
+
+let mouseX = 0;
+let mouseY = 0;
+
+
+let targetRotationX = 0;
+let targetRotationY = 0;
+
+
+document.addEventListener(
+    "mousemove",
+    function(event) {
+
+        mouseX =
+            (event.clientX /
+            window.innerWidth) *
+            2 - 1;
+
+
+        mouseY =
+            (event.clientY /
+            window.innerHeight) *
+            2 - 1;
+
+    }
+);
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+function animate() {
+
+    requestAnimationFrame(
+        animate
+    );
+
+
+    targetRotationY =
+        mouseX * 0.7;
+
+
+    targetRotationX =
+        mouseY * 0.25;
+
+
+    fashionGroup.rotation.y +=
+        (
+            targetRotationY -
+            fashionGroup.rotation.y
+        ) * 0.03;
+
+
+    fashionGroup.rotation.x +=
+        (
+            targetRotationX -
+            fashionGroup.rotation.x
+        ) * 0.03;
+
+
+    fashionObject.rotation.y +=
+        0.004;
+
+
+    ring.rotation.z +=
+        0.002;
+
+
+    ring2.rotation.z -=
+        0.001;
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+}
+
+
+animate();
+
+
+/* =========================================
+   RESPONSIVE 3D
+========================================= */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        camera.aspect =
+            window.innerWidth /
+            window.innerHeight;
+
+
+        camera.updateProjectionMatrix();
+
+
+        renderer.setSize(
+            window.innerWidth,
+            window.innerHeight
+        );
+
+    }
+);
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+const menuButton =
+    document.querySelector(
+        ".menu-btn"
+    );
+
+
+const navLinks =
+    document.querySelector(
+        ".nav-links"
+    );
+
+
+menuButton.addEventListener(
+    "click",
+    function() {
+
+        if (
+            navLinks.style.display ===
+            "flex"
+        ) {
+
+            navLinks.style.display =
+                "none";
+
+        } else {
+
+            navLinks.style.display =
+                "flex";
+
+            navLinks.style.position =
+                "absolute";
+
+            navLinks.style.top =
+                "80px";
+
+            navLinks.style.left =
+                "0";
+
+            navLinks.style.width =
+                "100%";
+
+            navLinks.style.padding =
+                "30px";
+
+            navLinks.style.background =
+                "#080808";
+
+            navLinks.style.flexDirection =
+                "column";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
